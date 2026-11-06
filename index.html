@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d9efff">
+  <title>Create Account | AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="auth-shell">
+    <section class="visual-panel" aria-label="Welcome to AURA">
+      <div class="visual-top">
+        <a class="brand" href="#" aria-label="AURA home"><span class="brand-mark">a</span><span>AURA<span class="brand-dot">.</span></span></a>
+        <span class="edition">MEMBER EXPERIENCE <i></i></span>
+      </div>
+
+      <div class="visual-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A BETTER WAY TO BEGIN</div>
+        <h1 id="visualTitle">Make room<br>for <span>what's next.</span></h1>
+        <p id="visualCopy">Your space, your pace. Create an account and enjoy a simpler, more personal experience.</p>
+
+        <div class="artwork" aria-hidden="true">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="art-sun"></div>
+          <div class="art-card card-back"><span class="tiny-star">✳</span><span class="mini-line"></span><span class="mini-line short"></span></div>
+          <div class="art-card card-front">
+            <div class="art-card-head"><span class="avatar-dot"></span><span class="art-dots">•••</span></div>
+            <div class="art-title-line"></div><div class="art-copy-line"></div>
+            <div class="art-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="art-card-foot"><span>YOUR NEXT CHAPTER</span><b>✦</b></div>
+          </div>
+          <div class="floating-chip chip-one">✦ &nbsp; Made for you</div>
+          <div class="floating-chip chip-two"><span class="pulse-dot"></span> A fresh start</div>
+          <div class="sparkle sparkle-one">✳</div><div class="sparkle sparkle-two">✦</div>
+        </div>
+      </div>
+
+      <div class="visual-footer">
+        <span>DESIGNED TO FEEL LIKE YOURS</span>
+        <span class="footer-note"><span class="footer-dot"></span> Simple. Personal. Yours.</span>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <div class="form-topbar">
+        <span class="secure-note"><span class="lock-icon">⌑</span> YOUR PERSONAL SPACE</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle theme"><span class="theme-icon">☾</span></button>
+      </div>
+
+      <div class="form-wrap">
+        <div class="mobile-brand"><span class="brand-mark">a</span><strong>AURA<span class="brand-dot">.</span></strong></div>
+        <div class="form-heading">
+          <div class="form-kicker" id="formKicker">GET STARTED — IT'S FREE</div>
+          <h2 id="formTitle">Create your<br><span>account.</span></h2>
+          <p id="formSubtitle">A few details, then you're all set.</p>
+        </div>
+
+        <div class="mode-switch" role="tablist" aria-label="Account access">
+          <button class="mode-btn active" id="signupTab" type="button" role="tab" aria-selected="true">Create account</button>
+          <button class="mode-btn" id="signinTab" type="button" role="tab" aria-selected="false">Sign in</button>
+          <span class="switch-indicator"></span>
+        </div>
+
+        <div class="notice" id="notice" role="status" aria-live="polite"></div>
+
+        <form id="signupForm" class="auth-form" novalidate>
+          <div class="field">
+            <label for="fullName">Full name <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">✧</span><input id="fullName" name="fullName" type="text" maxlength="40" placeholder="e.g. Alex Morgan" autocomplete="name" required></div>
+            <small class="field-error" id="nameError"></small>
+          </div>
+          <div class="field">
+            <label for="signupEmail">Email address <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">✉</span><input id="signupEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+            <small class="field-error" id="emailError"></small>
+          </div>
+          <div class="field">
+            <label for="signupPassword">Password <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">◇</span><input id="signupPassword" name="password" type="password" maxlength="20" placeholder="Create a password" autocomplete="new-password" required><button class="password-toggle" type="button" data-toggle="signupPassword" aria-label="Show password">Show</button></div>
+            <div class="strength-row"><div class="strength-track"><span id="strengthBar"></span></div><small id="strengthText">Use 8+ characters</small></div>
+            <small class="field-error" id="passwordError"></small>
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile number <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">⌕</span><input id="mobile" name="mobile" type="tel" maxlength="11" placeholder="03XXXXXXXXX" autocomplete="tel" inputmode="numeric" required></div>
+            <small class="field-error" id="mobileError"></small>
+          </div>
+          <div class="field">
+            <label for="dob">Date of birth <span class="optional">(optional)</span></label>
+            <div class="input-wrap"><span class="field-icon">▦</span><input id="dob" name="dob" type="date" autocomplete="bday"></div>
+          </div>
+          <button class="submit-btn" type="submit"><span>Create account</span><b>↗</b></button>
+          <button class="clear-btn" type="reset">Clear form</button>
+        </form>
+
+        <form id="signinForm" class="auth-form hidden" novalidate>
+          <div class="field">
+            <label for="signinEmail">Email address <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">✉</span><input id="signinEmail" type="email" placeholder="you@example.com" autocomplete="username" required></div>
+            <small class="field-error" id="signinEmailError"></small>
+          </div>
+          <div class="field">
+            <label for="signinPassword">Password <span>*</span></label>
+            <div class="input-wrap"><span class="field-icon">◇</span><input id="signinPassword" type="password" maxlength="20" placeholder="Enter your password" autocomplete="current-password" required><button class="password-toggle" type="button" data-toggle="signinPassword" aria-label="Show password">Show</button></div>
+            <small class="field-error" id="signinPasswordError"></small>
+          </div>
+          <div class="signin-options"><label class="remember-label"><input id="rememberMe" type="checkbox" checked><span class="custom-check"></span> Remember me</label><span class="muted-hint">Welcome back</span></div>
+          <button class="submit-btn" type="submit"><span>Sign in</span><b>↗</b></button>
+          <p class="signin-foot">New to AURA? <button type="button" class="text-action" id="goSignup">Create an account</button></p>
+        </form>
+
+        <div class="form-bottom"><span>By continuing, you agree to our <a href="#" aria-label="Terms">Terms</a> and <a href="#" aria-label="Privacy policy">Privacy Policy</a>.</span></div>
+      </div>
+      <div class="copyright">© <span id="year"></span> AURA EXPERIENCE. ALL RIGHTS RESERVED.</div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

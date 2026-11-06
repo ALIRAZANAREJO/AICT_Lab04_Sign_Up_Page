@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d9efff"><title>Your Dashboard | AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-shell{width:min(1050px,100%);min-height:650px;padding:36px;background:var(--paper);border:1px solid #ffffffb8;border-radius:28px;box-shadow:var(--shadow);backdrop-filter:blur(20px);animation:appear .7s both}
+    .dash-nav{display:flex;align-items:center;justify-content:space-between}.dash-brand{display:flex;align-items:center;gap:10px;color:#26364b;font:800 20px Manrope,sans-serif;letter-spacing:1.5px}.dash-actions{display:flex;gap:10px}
+    .dash-button{border:1px solid #e1e8ef;background:#fff;color:#687b91;border-radius:10px;padding:10px 14px;font-size:10px;font-weight:700}.dash-button:hover{transform:translateY(-1px)}
+    .welcome{margin:65px 0 35px}.welcome .eyebrow{font-size:10px;letter-spacing:2px;color:#8798ac}.welcome h1{font:800 clamp(34px,5vw,52px)/1.15 Manrope,sans-serif;letter-spacing:-2px;color:#27364a;margin:14px 0}.welcome h1 span{color:#9a8094}.welcome p{font-size:13px;color:#8793a4}
+    .profile-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #e7edf3;background:#ffffffa8;border-radius:18px;overflow:hidden}.profile-main{padding:28px}.profile-avatar{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,#c1e5f7,#f4d1df);font:800 24px Manrope;color:#526d91;margin-bottom:18px}.profile-main h2{font:800 21px Manrope;margin:0 0 5px;color:#334258}.profile-main p{font-size:11px;color:#8a98a9;margin:0}.profile-details{padding:28px;background:#f8fafc;display:grid;grid-template-columns:1fr 1fr;gap:20px}.detail-label{display:block;font-size:9px;font-weight:700;letter-spacing:1px;color:#a0aaba;margin-bottom:7px}.detail-value{font-size:12px;font-weight:700;color:#536176;overflow-wrap:anywhere}
+    .dash-note{margin-top:22px;padding:15px 17px;background:linear-gradient(100deg,#e8f5fc,#fbedf2);border-radius:12px;color:#71839a;font-size:10px;line-height:1.7}
+    body.dark .dash-brand,body.dark .welcome h1,body.dark .profile-main h2{color:#edf1f7}body.dark .dash-button{background:#293548;border-color:#435066;color:#c3cede}body.dark .profile-card{border-color:#3a4658;background:#202a39}body.dark .profile-details{background:#263244}body.dark .detail-value{color:#d1d9e4}body.dark .dash-note{background:linear-gradient(100deg,#263d4b,#403443);color:#c0ccda}
+    @media(max-width:650px){body{padding:12px}.dashboard-shell{padding:22px;min-height:calc(100vh - 24px)}.welcome{margin:55px 0 28px}.profile-card{grid-template-columns:1fr}.profile-details{padding:22px}.dash-nav .dash-brand{font-size:16px}}
+  </style>
+</head>
+<body>
+  <main class="dashboard-shell">
+    <nav class="dash-nav">
+      <div class="dash-brand"><span class="brand-mark">a</span><span>AURA<span class="brand-dot">.</span></span></div>
+      <div class="dash-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">☾</button><button class="dash-button" id="logoutBtn" type="button">Log out ↗</button></div>
+    </nav>
+    <section class="welcome">
+      <div class="eyebrow">YOUR PERSONAL SPACE</div>
+      <h1>Welcome, <span id="welcomeName">friend</span>.</h1>
+      <p>You’re signed in. Here’s a quick look at your account details.</p>
+    </section>
+    <section class="profile-card">
+      <div class="profile-main"><div class="profile-avatar" id="avatarInitials">A</div><h2 id="profileName">Your name</h2><p id="profileEmail">your@email.com</p></div>
+      <div class="profile-details">
+        <div><span class="detail-label">MOBILE NUMBER</span><span class="detail-value" id="profileMobile">—</span></div>
+        <div><span class="detail-label">DATE OF BIRTH</span><span class="detail-value" id="profileDob">Not provided</span></div>
+        <div><span class="detail-label">MEMBER SINCE</span><span class="detail-value" id="profileCreated">—</span></div>
+        <div><span class="detail-label">ACCOUNT STATUS</span><span class="detail-value">Active</span></div>
+      </div>
+    </section>
+    <div class="dash-note">This is a front-end demonstration dashboard. Account details are stored in this browser only. For real users, protect authentication and personal data with a trusted backend such as Firebase Authentication.</div>
+  </main>
+  <script>
+    const USERS_KEY="aura_demo_users_v1", SESSION_KEY="aura_demo_session_v1";
+    const session=localStorage.getItem(SESSION_KEY)||sessionStorage.getItem(SESSION_KEY);
+    let sessionData=null;
+    try{sessionData=JSON.parse(session||"null")}catch{}
+    const users=(()=>{try{return JSON.parse(localStorage.getItem(USERS_KEY)||"[]")}catch{return []}})();
+    const user=sessionData&&users.find(item=>item.id===sessionData.userId);
+    if(!user){window.location.replace("index.html")}
+    else{
+      document.getElementById("welcomeName").textContent=user.fullName.split(" ")[0];
+      document.getElementById("profileName").textContent=user.fullName;
+      document.getElementById("profileEmail").textContent=user.email;
+      document.getElementById("profileMobile").textContent=user.mobile||"—";
+      document.getElementById("profileDob").textContent=user.dob||"Not provided";
+      document.getElementById("profileCreated").textContent=user.createdAt?new Date(user.createdAt).toLocaleDateString():"—";
+      document.getElementById("avatarInitials").textContent=user.fullName.split(/\s+/).slice(0,2).map(part=>part[0]).join("").toUpperCase();
+    }
+    document.getElementById("logoutBtn").addEventListener("click",()=>{
+      localStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(SESSION_KEY);window.location.replace("index.html");
+    });
+    document.getElementById("themeToggle").addEventListener("click",()=>{
+      document.body.classList.toggle("dark");
+      const dark=document.body.classList.contains("dark");
+      document.getElementById("themeToggle").textContent=dark?"☀":"☾";
+      try{localStorage.setItem("aura_demo_theme",dark?"dark":"light")}catch{}
+    });
+    try{if(localStorage.getItem("aura_demo_theme")==="dark"){document.body.classList.add("dark");document.getElementById("themeToggle").textContent="☀"}}catch{}
+  </script>
+</body>
+</html>
